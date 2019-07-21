@@ -1,0 +1,11 @@
+addi t0, zero, 0
+addi t1, zero, 1
+call 0x10
+break
+stw ra, 0x2004(zero)
+stw t1, 0x2000(zero)
+addi t2, zero, 0x24
+callr t2
+break
+stw t2, 0x2008(zero)
+break

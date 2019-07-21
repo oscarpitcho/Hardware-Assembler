@@ -1,0 +1,329 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+d/home/student
+Eadd_sub
+Z0 w1538240708
+Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z4 dD:/prog/ArchordProject/Archord/modelsim
+Z5 8D:/prog/ArchordProject/Archord/vhdl/add_sub.vhd
+Z6 FD:/prog/ArchordProject/Archord/vhdl/add_sub.vhd
+l0
+L5
+V207_zj^V^3XmVFBkYPT0^3
+!s100 Ho^oT``GLJUNf<W@=D9Un1
+Z7 OV;C;10.5b;63
+32
+Z8 !s110 1538240710
+!i10b 1
+Z9 !s108 1538240710.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/prog/ArchordProject/Archord/vhdl/add_sub.vhd|
+Z11 !s107 D:/prog/ArchordProject/Archord/vhdl/add_sub.vhd|
+!i113 1
+Z12 o-work work -2002 -explicit
+Z13 tExplicit 1 CvgOpt 0
+Asynth
+R1
+R2
+R3
+DEx4 work 7 add_sub 0 22 207_zj^V^3XmVFBkYPT0^3
+l19
+L16
+V=<]6aBPe<dek`4_C?6Noc2
+!s100 3@6Mm@izmRgVo<4AALQDD2
+R7
+32
+Z14 !s110 1538240711
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Ealu
+Z15 w1476133812
+R2
+R3
+R4
+Z16 8D:/prog/ArchordProject/Archord/vhdl/ALU.vhd
+Z17 FD:/prog/ArchordProject/Archord/vhdl/ALU.vhd
+l0
+L24
+VLIV0?b]kCZ40<iPbTC=4:2
+!s100 O`l`Xc5c_V9`dzon<W_fQ2
+R7
+32
+R14
+!i10b 1
+Z18 !s108 1538240711.000000
+Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/prog/ArchordProject/Archord/vhdl/ALU.vhd|
+Z20 !s107 D:/prog/ArchordProject/Archord/vhdl/ALU.vhd|
+!i113 1
+R12
+R13
+Abdf_type
+R2
+R3
+Z21 DEx4 work 3 alu 0 22 LIV0?b]kCZ40<iPbTC=4:2
+l91
+L34
+Vn7Jhlm<g3=Igo4gAY0?Z=3
+!s100 ao^@A8=RSg[FW?jY:[EXI0
+R7
+32
+R14
+!i10b 1
+R18
+R19
+R20
+!i113 1
+R12
+R13
+Ecomparator
+Z22 w1538238257
+R2
+R3
+R4
+Z23 8D:/prog/ArchordProject/Archord/vhdl/comparator.vhd
+Z24 FD:/prog/ArchordProject/Archord/vhdl/comparator.vhd
+l0
+L4
+V3WXakLjKGIMC9fTC_zAJG3
+!s100 XTWoF>RX1>LcmLLBBo;N:0
+R7
+32
+R14
+!i10b 1
+R18
+Z25 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/prog/ArchordProject/Archord/vhdl/comparator.vhd|
+Z26 !s107 D:/prog/ArchordProject/Archord/vhdl/comparator.vhd|
+!i113 1
+R12
+R13
+Asynth
+R2
+R3
+DEx4 work 10 comparator 0 22 3WXakLjKGIMC9fTC_zAJG3
+l20
+L16
+VC[ocBjO_?MP[c9H2fc2JG1
+!s100 ORja2TKeSBJ`jZm7?cjRN2
+R7
+32
+R14
+!i10b 1
+R18
+R25
+R26
+!i113 1
+R12
+R13
+Elogic_unit
+Z27 w1537947869
+R2
+R3
+R4
+Z28 8D:/prog/ArchordProject/Archord/vhdl/logic_unit.vhd
+Z29 FD:/prog/ArchordProject/Archord/vhdl/logic_unit.vhd
+l0
+L4
+VfUEL39DQfcR_XLk:Hoe<f3
+!s100 UJioXKUg8XUULGTSe2WE20
+R7
+32
+R14
+!i10b 1
+R18
+Z30 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/prog/ArchordProject/Archord/vhdl/logic_unit.vhd|
+Z31 !s107 D:/prog/ArchordProject/Archord/vhdl/logic_unit.vhd|
+!i113 1
+R12
+R13
+Asynth
+R2
+R3
+DEx4 work 10 logic_unit 0 22 fUEL39DQfcR_XLk:Hoe<f3
+l14
+L13
+VEW9?VZQRz0AHaYbOkK2Ag3
+!s100 nJbSM=ORMnGclkGY]5WZX3
+R7
+32
+R14
+!i10b 1
+R18
+R30
+R31
+!i113 1
+R12
+R13
+Emultiplexer
+Z32 w1537956386
+R2
+R3
+R4
+Z33 8D:/prog/ArchordProject/Archord/vhdl/multiplexer.vhd
+Z34 FD:/prog/ArchordProject/Archord/vhdl/multiplexer.vhd
+l0
+L4
+V4iH6`nZgBAHVia??bJk>G2
+!s100 UDM^5ga=kb9Z[=K^]bghV0
+R7
+32
+R14
+!i10b 1
+R18
+Z35 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/prog/ArchordProject/Archord/vhdl/multiplexer.vhd|
+Z36 !s107 D:/prog/ArchordProject/Archord/vhdl/multiplexer.vhd|
+!i113 1
+R12
+R13
+Asynth
+R2
+R3
+Z37 DEx4 work 11 multiplexer 0 22 4iH6`nZgBAHVia??bJk>G2
+l16
+L15
+Z38 VL03<1Z1e@1oH;:@H0]4G11
+Z39 !s100 zG0P6hMK;5D:X_nVOZJE<2
+R7
+32
+R14
+!i10b 1
+R18
+R35
+R36
+!i113 1
+R12
+R13
+Eshift_unit
+Z40 w1538239834
+R1
+R2
+R3
+R4
+Z41 8D:/prog/ArchordProject/Archord/vhdl/shift_unit.vhd
+Z42 FD:/prog/ArchordProject/Archord/vhdl/shift_unit.vhd
+l0
+L5
+VoYz=ZP:Rg2U9Eb=ZGo>940
+!s100 C4@E7NN0:UB89P^MW405S0
+R7
+32
+R8
+!i10b 1
+R9
+Z43 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/prog/ArchordProject/Archord/vhdl/shift_unit.vhd|
+Z44 !s107 D:/prog/ArchordProject/Archord/vhdl/shift_unit.vhd|
+!i113 1
+R12
+R13
+Asynth
+R1
+R2
+R3
+DEx4 work 10 shift_unit 0 22 oYz=ZP:Rg2U9Eb=ZGo>940
+l16
+L14
+VP51?X=n4;kR4JF3lUlzU[1
+!s100 kij<@kZ79l7EDWH16M]n@0
+R7
+32
+R8
+!i10b 1
+R9
+R43
+R44
+!i113 1
+R12
+R13
+Etb_alu
+Z45 w1538237620
+R1
+R2
+R3
+R4
+Z46 8D:/prog/ArchordProject/Archord/testbench/tb_ALU.vhd
+Z47 FD:/prog/ArchordProject/Archord/testbench/tb_ALU.vhd
+l0
+L5
+VPC4a2j0Z@h07SO>N@?M3X3
+!s100 h4gR^9UUSFUJBW2hl@TTO2
+R7
+32
+R8
+!i10b 1
+R9
+Z48 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/prog/ArchordProject/Archord/testbench/tb_ALU.vhd|
+Z49 !s107 D:/prog/ArchordProject/Archord/testbench/tb_ALU.vhd|
+!i113 1
+R12
+R13
+Abench
+R21
+R1
+R2
+R3
+DEx4 work 6 tb_alu 0 22 PC4a2j0Z@h07SO>N@?M3X3
+l12
+L8
+VlQ56T>no^>o:PaPY`<><h2
+!s100 I;U4cZzhkd`]@m]mG?LoE0
+R7
+32
+R8
+!i10b 1
+R9
+R48
+R49
+!i113 1
+R12
+R13
+Etb_logic_unit
+Z50 w1537949514
+R2
+R3
+R4
+Z51 8D:/prog/ArchordProject/Archord/testbench/tb_logic_unit.vhd
+Z52 FD:/prog/ArchordProject/Archord/testbench/tb_logic_unit.vhd
+l0
+L4
+V56]=9U8E_0^hnOWE8_kak0
+!s100 I0S6Z^F^OTJKf4O?Ic>222
+R7
+32
+R8
+!i10b 1
+R9
+Z53 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/prog/ArchordProject/Archord/testbench/tb_logic_unit.vhd|
+Z54 !s107 D:/prog/ArchordProject/Archord/testbench/tb_logic_unit.vhd|
+!i113 1
+R12
+R13
+Atestbench
+R2
+R3
+DEx4 work 13 tb_logic_unit 0 22 56]=9U8E_0^hnOWE8_kak0
+l21
+L7
+V;O=FMY>oCQ_bBZAUKVz=I3
+!s100 8[E4ENkVU9gYfOVlZn_^@1
+R7
+32
+R8
+!i10b 1
+R9
+R53
+R54
+!i113 1
+R12
+R13

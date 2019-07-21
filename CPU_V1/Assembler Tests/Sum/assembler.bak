@@ -1,0 +1,27 @@
+
+addi sp, zero, 0x1130
+#Argument
+addi v0, zero, 10
+addi t1, zero, sum 
+callr t1
+print:
+stw a0, 0x2000(zero)
+break
+
+sum:
+addi sp, sp, -8#Push argument and address from where function was called
+stw v0, 0(sp)
+stw ra, 4(sp)
+add t0, v0, zero
+bne t0, zero, rec #if(t0 != zero) jmp to rec
+addi v0, zero, 0
+addi sp, sp, 8
+ret ra 
+
+rec:	addi v0, v0, -1
+rcall: callr t1 #Stores Pc value in ra
+ldw v0, 0(sp)#Pop
+ldw ra, 4(sp)
+add a0, a0, v0
+addi sp, sp, 8	
+ret ra

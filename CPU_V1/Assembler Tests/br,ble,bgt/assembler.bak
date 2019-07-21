@@ -1,0 +1,10 @@
+addi t0, zero, -1
+addi t1, zero, 0x10
+and t3, t0, t1
+br 0xf
+stw t3, 0x2000(zero)
+srl t4, t0, t1
+stw t4, 0x2004(zero)
+ldw t5, 0x2004(zero)
+stw t5, 0x2008(zero)
+break

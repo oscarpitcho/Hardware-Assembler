@@ -1,0 +1,9 @@
+addi ra, zero, 0xC
+ret
+break
+stw ra, 0x2000(zero)
+addi t0, zero, 0x1C
+jmp t0
+break
+stw t0, 0x2004(zero)
+break
