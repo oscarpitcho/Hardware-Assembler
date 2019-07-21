@@ -1,0 +1,8 @@
+add wave * 
+force clk 0 0, 1 15 -repeat 30
+force reset_n 1 0
+force A 00000101
+force B 00010000
+force C 00000001
+force sel 0 0, 1 200
+run 400

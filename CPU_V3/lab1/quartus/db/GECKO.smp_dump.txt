@@ -1,0 +1,24 @@
+
+State Machine - |GECKO|pipeline_lab:inst|state_verify
+Name state_verify.FINISHED state_verify.COUNT state_verify.IDLE 
+state_verify.IDLE 0 0 0 
+state_verify.COUNT 0 1 1 
+state_verify.FINISHED 1 0 1 
+
+State Machine - |GECKO|pipeline_lab:inst|\FSM_verify:sync_state0
+Name \FSM_verify:sync_state0.FINISHED \FSM_verify:sync_state0.COUNT \FSM_verify:sync_state0.IDLE 
+\FSM_verify:sync_state0.IDLE 0 0 0 
+\FSM_verify:sync_state0.COUNT 0 1 1 
+\FSM_verify:sync_state0.FINISHED 1 0 1 
+
+State Machine - |GECKO|pipeline_lab:inst|\FSM_verify:sync_state1
+Name \FSM_verify:sync_state1.FINISHED \FSM_verify:sync_state1.COUNT \FSM_verify:sync_state1.IDLE 
+\FSM_verify:sync_state1.IDLE 0 0 0 
+\FSM_verify:sync_state1.COUNT 0 1 1 
+\FSM_verify:sync_state1.FINISHED 1 0 1 
+
+State Machine - |GECKO|pipeline_lab:inst|state_compute
+Name state_compute.FINISHED state_compute.COUNT state_compute.IDLE 
+state_compute.IDLE 0 0 0 
+state_compute.COUNT 0 1 1 
+state_compute.FINISHED 1 0 1 

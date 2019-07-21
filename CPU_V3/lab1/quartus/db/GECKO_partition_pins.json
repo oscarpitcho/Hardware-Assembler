@@ -1,0 +1,209 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "out_LEDs[91]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[90]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[86]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[85]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[84]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[81]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[75]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[74]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[70]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[69]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[67]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[66]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[65]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[61]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[60]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[59]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[58]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[54]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[53]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[52]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[51]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[50]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[46]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[45]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[44]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[43]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[42]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[37]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[36]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[35]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[34]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[30]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[29]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[28]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[27]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[26]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[25]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[21]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[20]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[19]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[18]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[14]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[13]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[12]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[11]",
+					"strict" : false
+				},
+				{
+					"name" : "out_LEDs[10]",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "reset_n",
+					"strict" : false
+				},
+				{
+					"name" : "in_buttons[1]",
+					"strict" : false
+				},
+				{
+					"name" : "in_buttons[0]",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

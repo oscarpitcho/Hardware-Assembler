@@ -1,0 +1,63 @@
+.equ HEAD_X, 0x1000 ; snake head's position on x-axis
+.equ HEAD_Y, 0x1004 ; snake head's position on y-axis
+.equ TAIL_X, 0x1008 ; snake tail's position on x-axis
+.equ TAIL_Y, 0x100C ; snake tail's position on y-axis
+.equ SCORE, 0x1010 ; score address
+.equ GSA, 0x1014 ; game state array
+.equ LEDS, 0x2000 ; LED addresses
+.equ SEVEN_SEGS, 0x1198 ; 7-segment display addresses
+.equ RANDOM_NUM, 0x2010 ; Random number generator address
+.equ BUTTONS, 0x2030 ; Button addresses
+
+; BEGIN:restart_game
+restart_game:
+;T1 = edge
+	ldw t1, BUTTONS + 4(zero)
+	slli t1, t1, 27
+	srli t1, t1, 31
+	bne t1, zero, reset_activated
+	addi v0, zero, 0 ;Return value is 0 as nothing has been done
+	ret
+
+	reset_activated:
+	stw zero, SCORE(zero); Resetting score
+
+	;Pushing return address
+	addi sp, sp, -4
+	stw ra, 0(sp)
+	
+	call clear_gsa 
+
+	;Initial direction of the snake(rightwards)
+	addi t1, zero, 4
+	
+	;Creating a rightwards snake in the top left corner
+	stw t1, GSA(zero)
+	stw zero, HEAD_X(zero)
+	stw zero, HEAD_Y(zero)
+
+	call create_food
+	
+	;Popping return address + loading return value
+	addi v0, zero, 1;Return value is 1 since button was pressed
+	ldw ra, 0(sp)
+	addi sp, sp, 4
+	ret
+
+	
+; END:restart_game
+
+; BEGIN:clear_gsa
+clear_gsa:
+	;t1 = Cieling
+	addi t1, zero, 384
+	;t2 = counter
+	addi t2, zero, 0
+
+	clear_gsa_loop:
+	stw zero, GSA(t2)
+	addi t2, t2, 4;Increment counter
+	bne t2, t1, clear_gsa_loop ;Go back till we reach 384
+	ret
+
+; END:clear_gsa

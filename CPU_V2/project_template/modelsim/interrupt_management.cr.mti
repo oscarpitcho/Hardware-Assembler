@@ -1,0 +1,57 @@
+../testbench/check_functions.vhd {2 {vcom -work work -2002 -explicit -cover s -stats=none C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/check_functions.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_textio
+-- Compiling package check_functions
+-- Compiling package body check_functions
+-- Loading package check_functions
+** Warning: C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/check_functions.vhd(35): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
+** Warning: C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/check_functions.vhd(47): (vcom-1283) Cannot reference file "text_report" inside pure function "fcheck".
+** Warning: C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/check_functions.vhd(53): (vcom-1283) Cannot reference file "text_report" inside pure function "fcheck".
+** Warning: C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/check_functions.vhd(55): (vcom-1283) Cannot reference file "text_report" inside pure function "fcheck".
+** Warning: C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/check_functions.vhd(56): (vcom-1283) Cannot reference file "text_report" inside pure function "fcheck".
+** Warning: C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/check_functions.vhd(71): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
+** Warning: C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/check_functions.vhd(83): (vcom-1283) Cannot reference file "text_report" inside pure function "fcheck".
+** Warning: C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/check_functions.vhd(89): (vcom-1283) Cannot reference file "text_report" inside pure function "fcheck".
+** Warning: C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/check_functions.vhd(91): (vcom-1283) Cannot reference file "text_report" inside pure function "fcheck".
+** Warning: C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/check_functions.vhd(92): (vcom-1283) Cannot reference file "text_report" inside pure function "fcheck".
+
+} {} {}} ../testbench/PC_tb.vhd {2 {vcom -work work -2002 -explicit -cover s -stats=none C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/PC_tb.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_textio
+-- Loading package NUMERIC_STD
+-- Loading package check_functions
+-- Compiling entity PC_tb
+-- Compiling architecture testbench of PC_tb
+** Warning: C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/PC_tb.vhd(61): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
+** Warning: C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/PC_tb.vhd(62): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
+
+} {} {}} ../testbench/control_registers_tb.vhd {2 {vcom -work work -2002 -explicit -cover s -stats=none C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/control_registers_tb.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_textio
+-- Loading package NUMERIC_STD
+-- Loading package check_functions
+-- Compiling entity control_registers_tb
+-- Compiling architecture testbench of control_registers_tb
+** Warning: C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/control_registers_tb.vhd(60): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
+** Warning: C:/Users/FOCUS/Desktop/ArcSoc/project_template/testbench/control_registers_tb.vhd(62): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
+
+} {} {}} ../vhdl/PC.vhd {1 {vcom -work work -2002 -explicit -cover s -stats=none C:/Users/FOCUS/Desktop/ArcSoc/project_template/vhdl/PC.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity PC
+-- Compiling architecture synth of PC
+
+} {} {}}

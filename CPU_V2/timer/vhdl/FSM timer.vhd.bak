@@ -1,0 +1,85 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity timer is
+    port(
+        -- bus interface
+        clk     : in  std_logic;
+        reset_n : in  std_logic;
+        cs      : in  std_logic;
+        read    : in  std_logic;
+        write   : in  std_logic;
+        address : in  std_logic_vector(1 downto 0);
+        wrdata  : in  std_logic_vector(31 downto 0);
+
+        irq     : out std_logic;
+        rddata  : out std_logic_vector(31 downto 0)
+    );
+end timer;
+
+architecture synth of timer is
+	SIGNAL writtenToPeriod : std_logic;
+	SIGNAL s_writeEn, s_readEn : std_logic; 
+	SIGNAL latency_read, latency_cs: std_logic := '0'; 
+	SIGNAL latency_address: std_logic_vector(1 DOWNTO 0) := "00"; 
+	SIGNAL s_counter: std_logic_vector (31 DOWNTO 0);
+	SIGNAL r_period, r_status, r_control, r_counter: std_logic_vector (31 downto 0);
+begin
+	--read/write interface
+	s_writeEn <= cs and write; 
+	writing: PROCESS (clock, reset_n) IS
+	BEGIN
+		IF (reset_n = '0') THEN 
+			r_period <= (OTHERS=>’0’);
+			r_status <= (OTHERS=>’0’);
+			r_control<= (OTHERS=>’0’); 
+			r_counter<= (OTHERS=>’0’);
+		ELSE	
+			IF(rising_edge(clock) and s_writeEn = '1') THEN 
+				CASE address IS 
+					WHEN "00" <= r_status(0) <= wrdata(0) and r_status(0); 
+					WHEN "01" <= r_control(3 downto 0) <= wrdata(3 downto 0);
+					WHEN "10" <= r_period <= wrdata;
+								 s_writtenToPeriod <= '1'; 
+								 
+					WHEN OTHERS <= ;
+				END CASE;   
+			END IF;
+		END IF;
+	END PROCESS;
+
+	reading: PROCESS (clock) IS
+	BEGIN 
+		IF(rising_edge(clock)) THEN 
+			latency_address <= address;
+			latency_cs <= cs;
+			latency_read <= read; 
+		END IF; 
+	END PROCESS;
+	s_readEn <= latency_read and latency_cs;
+	rddata <= 'Z' when s_readEn = '0' else 
+			  r_counter when latency_address = "11" else 
+			  r_period  when latency_address = "10" else 
+			  (1 DOWNTO 0 => r_status, OTHERS => '0') when latency_address = "01" else 
+			  (1 DOWNTO 0 => r_control, OTHERS => '0');
+			  
+
+	
+	-- counter / period handeling & counter finite state machine 
+	FSM: PROCESS (clock) IS
+	BEGIN
+		IF (rising_edge(clock)) THEN 
+			IF(s_writtenToPeriod = '1' or r_counter = (OTHERS => '0')) THEN 
+				r_counter <= r_period;
+				s_writtenToPeriod <= '0';
+				s_current <= IDLE; 
+			ELSE
+				r_counter <= std_logic_vector(to_integer(unsigned(r_counter)) - 1);
+			END IF;
+	END PROCESS;
+	--output logic 
+	irq <= r_status(0) and r_control(0);
+	r_status(0) <= '1' WHEN r_counter = (OTHERS =>'0') ELSE r_status(0);
+	
+end synth;

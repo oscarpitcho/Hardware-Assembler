@@ -1,0 +1,24 @@
+../testbench/multiplier_tb.vhd {1 {vcom -work work -2002 -explicit -cover s -stats=none C:/Users/FOCUS/Desktop/ArcSoc/ArcSoc/pipelinin/lab1/testbench/multiplier_tb.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_textio
+-- Compiling entity multiplier_tb
+-- Compiling architecture bench of multiplier_tb
+
+} {} {}} ../vhdl/multiplier.vhd {1 {vcom -work work -2002 -explicit -cover s -stats=none C:/Users/FOCUS/Desktop/ArcSoc/ArcSoc/pipelinin/lab1/vhdl/multiplier.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity multiplier
+-- Compiling architecture combinatorial of multiplier
+-- Compiling entity multiplier16
+-- Compiling architecture combinatorial of multiplier16
+-- Compiling entity multiplier16_pipeline
+-- Compiling architecture pipeline of multiplier16_pipeline
+
+} {} {}}

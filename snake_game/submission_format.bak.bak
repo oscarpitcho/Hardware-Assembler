@@ -1,0 +1,574 @@
+.equ HEAD_X, 0x1000 ; snake head's position on x-axis
+.equ HEAD_Y, 0x1004 ; snake head's position on y-axis
+.equ TAIL_X, 0x1008 ; snake tail's position on x-axis
+.equ TAIL_Y, 0x100C ; snake tail's position on y-axis
+.equ SCORE, 0x1010 ; score address
+.equ GSA, 0x1014 ; game state array
+.equ LEDS, 0x2000 ; LED addresses
+.equ SEVEN_SEGS, 0x1198 ; 7-segment display addresses
+.equ RANDOM_NUM, 0x2010 ; Random number generator address
+.equ BUTTONS, 0x2030 ; Button addresses
+
+main:
+	addi sp, zero, LEDS
+	jmpi terminate
+	main_loop:
+		addi v0, zero, 0
+		call clear_leds
+		call draw_array 
+		addi t0, zero, 0 ;Iterator
+		addi t1, zero, 0b11 ;Timer
+		slli t1, t1, 20 ;Initialisation
+		call wait
+	
+		call restart_game
+
+		beq v0, zero, no_restart
+			jmpi main_loop
+		no_restart:
+		call get_input
+		call hit_test
+		addi a0, zero, 0
+		beq v0, zero, no_collision
+		addi v0, v0, -1
+		beq v0, zero, no_termination
+		jmpi terminate
+		no_termination:
+			ldw t0, SCORE(zero)
+			addi t0, t0, 1
+			stw t0, SCORE(zero)
+			call display_score
+			call create_food
+			addi a0, zero, 1
+		no_collision:
+		call move_snake
+
+		jmpi main_loop
+	wait:
+		addi t0, t0, 1
+		blt t0, t1, wait
+		ret
+	terminate:
+		call restart_game
+		beq v0, zero, terminate
+			jmpi main_loop
+	break
+
+; BEGIN:clear_leds
+clear_leds: 
+	addi t1, zero, 4
+	addi t2, zero, 8
+	stw zero, LEDS (zero)
+	stw zero, LEDS (t1)
+	stw zero, LEDS (t2)
+	ret 
+; END:clear_leds
+
+; BEGIN:set_pixel
+; a0 = x
+; a1 = y
+set_pixel: 
+	;Each led has x index ranging from 0 to 3 (2 lsb of x pos)
+	or t1, zero, a0  ;to know which array
+	;T1 = array index (0, 4 or 8)
+	srli t1, t1, 2 ; Clear two LSB and keep the LED identifier
+	slli t1, t1, 2 ; 
+	;T0 = Initial value of array
+	ldw t0, LEDS (t1)
+	andi t2, a0, 3 ;Obtain x in led
+	slli t2, t2, 3 ; x*8
+	;T2 = bit Number in corresponding Array
+	add t2, t2, a1 ; Bitnumber is x*8 + y
+	ori t3, zero, 1 ; we create the mask 
+	sll t3, t3, t2
+	or t0, t0, t3 ; 
+	stw t0, LEDS (t1)
+	ret 
+; END:set_pixel
+
+; BEGIN:get_input 
+get_input: 
+	;loading EDGECAPTURE into t1  
+	ldw t1, BUTTONS + 4(zero)
+	stw zero, BUTTONS +4(zero)
+	; and the previous head direction vector in t5
+	;we fetch the previous head position
+	ldw t2, HEAD_X(zero)
+	ldw t3, HEAD_Y(zero)
+	; we do 8x + y to get the correct position in the GSA
+	slli t4, t2, 3
+	add t4, t4, t3 
+	; we get the value from the GSA knowing that it is word alligned thus we need to multiply by 4
+	slli t4, t4, 2
+	ldw t5, GSA(t4)
+	add t2, zero, zero
+
+	;T2 = Input direction
+	;T5 = Old direction
+get_i_loop:
+    beq t1, zero, get_i_testing
+	addi t2, t2, 1
+	srli t1, t1, 1
+	jmpi get_i_loop
+
+get_i_testing:
+	add t3, t2, t5
+	addi t6, zero, 5
+	; testing cases
+	beq t2, zero, get_i_end; if no input
+	beq t2, t5, get_i_end ;if equal exit
+	beq t6, t3, get_i_end ; if equal opposite directions exit
+
+	;store new value in GSA
+	stw t2, GSA(t4)
+	ret
+get_i_end:
+	ret  
+; END:get_input
+
+; BEGIN:move_snake
+;a0 = 1 if collision with food
+move_snake:
+	;Pushing a0 and ra to pile
+	addi sp , sp, -12
+	stw ra, 8(sp)
+	stw a1, 4(sp)
+	stw a0, 0(sp)
+
+	;Loading head position from mem
+	ldw a0, HEAD_X(zero)
+	ldw a1, HEAD_Y(zero)
+
+	;Obtain gsa index in v0
+	call gsa_index_ms
+ 	
+	;Getting head cell content
+	slli t2, v0, 2
+	ldw t1, GSA(t2)
+
+	
+	addi a0, t1, 0
+	addi a1, v0, 0
+	;v0 = new GSA
+	call correct_gsa_ms
+	
+	;Getting back head content
+	add t1, a0, zero 
+	
+	
+	;Saving head content to new head pos
+	;Word alignment
+	slli t2, v0, 2
+	stw t1, GSA(t2)
+
+	addi a0, v0, 0
+	call array_coordinates_ms
+
+	stw v0, HEAD_X(zero)
+	stw v1, HEAD_Y(zero)
+	
+
+	;Tail does not move if something is eaten
+	ldw a0, 0(sp)
+	beq a0, zero, tail
+	ldw a1, 4(sp)
+	ldw ra, 8(sp)
+	addi sp, sp, 12
+	ret
+	
+	tail:
+	;Loading tail position from mem
+	ldw a0, TAIL_X(zero)
+	ldw a1, TAIL_Y(zero)
+	
+	call gsa_index_ms
+
+	;Getting tail cell content + reset
+	;Word alignment
+	slli t2, v0, 2
+	ldw t1, GSA(t2)
+	stw zero, GSA(t2)
+
+	;a0 = Tail content
+	;a1 = Tail Index
+	addi a0, t1, 0
+	addi a1, v0, 0
+
+	;v0 = new GSA
+	call correct_gsa_ms
+
+
+	addi a0, v0, 0
+	call array_coordinates_ms
+	stw v0, TAIL_X(zero)
+	stw v1, TAIL_Y(zero)
+	
+	ldw a0, 0(sp)
+	ldw a1, 4(sp)
+	ldw ra, 8(sp)
+	addi sp, sp, 12
+	ret
+
+;Auxiliaries
+correct_gsa_ms:
+	;Storing comparaison value for vector
+	addi t4, zero, 1
+	addi t5, zero, 2
+	addi t6, zero, 3
+	addi t7, zero, 4
+
+	;Branching in correct case
+	beq a0, t4, gsa_left_ms
+	beq a0, t5, gsa_up_ms
+	beq a0, t6, gsa_down_ms
+	beq a0, t7, gsa_right_ms
+
+	gsa_left_ms:
+	addi v0, a1, -8
+	ret 
+	gsa_right_ms:
+	addi v0, a1, 8
+	ret
+	gsa_up_ms:
+	addi v0, a1, -1
+	ret 
+	gsa_down_ms:
+	addi v0, a1, 1
+	ret
+
+gsa_index_ms:
+	slli v0, a0, 3
+	add v0, v0, a1
+	ret 
+
+array_coordinates_ms:
+	srli v0, a0, 3
+	slli t1, v0, 3
+	sub v1, a0, t1
+	ret
+; END:move_snake
+
+; BEGIN:draw_array
+draw_array:
+	;Pushing ra, a0, a1, s0, s1
+	addi sp, sp, -20
+	stw ra, 16(sp)
+	stw a0, 12(sp)
+	stw a1, 8(sp)
+	stw s0, 4(sp)
+	stw s1, 0(sp)
+	;S0 = Cieling value
+	;S1 = Current index * 4
+	addi s0, zero, 384
+	addi s1, zero, 0
+	
+	;Drawing all 96 cells
+	draw_array_loop:
+		;Getting cell content
+		ldw t1, GSA(s1)
+		;Displaying if non-empty
+		bne zero, t1, display_pixel
+		
+		draw_array_bloop:
+		addi s1, s1, 4
+		;Continue loop if counter is not at 384 ( 96 * 4 )
+		bne s1, s0, draw_array_loop
+		
+		;Popping save values and returning
+		ldw s1, 0(sp)
+		ldw s0, 4(sp)
+		ldw a1, 8(sp)
+		ldw a0, 12(sp)
+		ldw ra, 16(sp)
+		addi sp, sp, 20
+		ret
+
+		display_pixel:
+		addi a0, s1, 0
+		srli a0, a0, 2; Divding by 4 to get index 
+		call array_coordinates_da
+		addi a0, v0, 0
+		addi a1, v1, 0
+		call set_pixel
+		jmpi draw_array_bloop
+;Auxiliaries
+array_coordinates_da:
+	srli v0, a0, 3
+	slli t1, v0, 3
+	sub v1, a0, t1
+	ret
+; END:draw_array
+
+; BEGIN:create_food
+create_food:
+	ldw t1, RANDOM_NUM(zero)
+	;Taking the first byte, T1 = food Index
+	slli t1, t1, 24
+	srli t1, t1, 24
+	;Creating comparaison register
+	addi t2, zero, 96
+	blt t1, t2, check_free_cell
+	br create_food
+
+	check_free_cell:
+	; Gsa is word aligned on Bytes hence to access, index must be * 4 
+	slli t1, t1, 2
+	ldw t3, GSA(t1)
+	;Jump if cell is free
+	beq t3, zero, put_food
+	br create_food
+	put_food:
+	;Creating food value register
+	addi t4, zero, 5
+	stw t4, GSA(t1)
+	ret
+; END:create_food
+
+; BEGIN:hit_test
+hit_test:
+	;Pushing aguments and return value
+	addi sp, sp, -12
+	stw a0, 0(sp)
+	stw a1, 4(sp)
+	stw ra, 8(sp)
+	
+	;Getting position of head on GSA
+	ldw a0, HEAD_X(zero)
+	ldw a1, HEAD_Y(zero)
+	call gsa_index_ht
+	addi a0, v0, 0
+
+	;V0 = current x
+	;V1 = current y
+	call array_coordinates_ht
+
+
+	slli t1, a0, 2
+	
+	;T7 = CONTENT OF HEAD
+	ldw t7, GSA(t1)
+
+	next_coordinates:
+	addi t1, zero, 1
+	addi t2, zero, 2 
+	addi t3, zero, 3
+	addi t4, zero, 4
+
+	beq t7, t1, next_left
+	beq t7, t2 ,next_top
+	beq t7, t3, next_bot
+	beq t7, t4, next_right
+
+	;V0 = NEXT X
+	;V1 = NEXT Y
+	next_left:
+	addi v0, v0, -1
+	br continue_hit
+	next_right:
+	addi v0, v0, 1
+	br continue_hit
+	next_top:
+	addi v1, v1, -1
+	br continue_hit
+	next_bot:
+	addi v1, v1, 1
+	br continue_hit 
+
+	continue_hit:
+	;Creating comparaison registers
+	addi t1, zero, 12
+	addi t2, zero, 8
+	
+	;Checking if x is in bounds
+	bge v0, t1, end_game
+	blt v0, zero, end_game
+	bge v1, t2, end_game
+	blt v1, zero, end_game
+
+	;T7 = NEXT CELL CONTENT
+	addi a1, a0, 0
+	slli t1, a1, 2
+	ldw a0, GSA(t1)
+	
+	;V0 = next cell index
+	call correct_gsa_ht
+
+	slli t1, v0, 2
+	ldw t7, GSA(t1)
+	
+
+	;Creating comparaison registers
+	addi t1, zero, 1
+	addi t2, zero, 2
+	addi t3, zero, 3
+	addi t4, zero, 4
+	addi t5, zero, 5
+	
+	;Testing collision with self
+	beq t7, t1, end_game
+	beq t7, t2, end_game
+	beq t7, t3, end_game
+	beq t7, t4, end_game
+	beq t7, t5, food_eaten
+	
+	;Nothing happened
+	ldw a0, 0(sp)
+	ldw a1, 4(sp)
+	ldw ra, 8(sp)
+	addi sp, sp, 12
+	addi v0, zero, 0
+	ret
+	
+	end_game:
+	ldw a0, 0(sp)
+	ldw a1, 4(sp)
+	ldw ra, 8(sp)
+	addi sp, sp, 12
+	addi v0, zero, 2
+	ret
+
+	food_eaten:
+	ldw a0, 0(sp)
+	ldw a1, 4(sp)
+	ldw ra, 8(sp)
+	addi sp, sp, 12
+	addi v0, zero, 1
+	ret
+
+;Auxiliairies
+
+array_coordinates_ht:
+	srli v0, a0, 3
+	slli t1, v0, 3
+	sub v1, a0, t1
+	ret
+gsa_index_ht:
+	slli v0, a0, 3
+	add v0, v0, a1
+	ret 
+
+correct_gsa_ht:
+	;Storing comparaison value for vector
+	addi t4, zero, 1
+	addi t5, zero, 2
+	addi t6, zero, 3
+	addi t7, zero, 4
+
+	;Branching in correct case
+	beq a0, t4, gsa_left_ht
+	beq a0, t5, gsa_up_ht
+	beq a0, t6, gsa_down_ht
+	beq a0, t7, gsa_right_ht
+
+	gsa_left_ht:
+	addi v0, a1, -8
+	ret 
+	gsa_right_ht:
+	addi v0, a1, 8
+	ret
+	gsa_up_ht:
+	addi v0, a1, -1
+	ret 
+	gsa_down_ht:
+	addi v0, a1, 1
+	ret
+; END:hit_test
+
+; BEGIN:restart_game
+restart_game:
+;T1 = edge
+	ldw t1, BUTTONS + 4(zero)
+
+	slli t1, t1, 27
+	srli t1, t1, 31
+	bne t1, zero, reset_activated
+	addi v0, zero, 0 ;Return value is 0 as nothing has been done
+	ret
+
+	reset_activated:
+	stw zero, SCORE(zero); Resetting score
+	stw zero, BUTTONS + 4 (zero)
+
+	;Pushing return address
+	addi sp, sp, -4
+	stw ra, 0(sp)
+	
+	call clear_gsa_rg
+	call clear_leds
+	call display_score
+	call create_food
+	;Initial direction of the snake(rightwards)
+	addi t1, zero, 4
+	
+	;Creating a rightwards snake in the top left corner
+	stw t1, GSA (zero)
+	stw zero, HEAD_X(zero)
+	stw zero, HEAD_Y(zero)
+	stw zero, TAIL_X(zero)
+	stw zero, TAIL_Y(zero)
+
+	;Popping return address + loading return value
+	addi v0, zero, 1;Return value is 1 since button was pressed
+	ldw ra, 0(sp)
+	addi sp, sp, 4
+	ret
+
+;Auxiliaries
+clear_gsa_rg:
+	;t1 = Cieling
+	addi t1, zero, 384
+	;t2 = counter
+	addi t2, zero, 0
+
+	clear_gsa_loop:
+	stw zero, GSA(t2)
+	addi t2, t2, 4;Increment counter
+	bne t2, t1, clear_gsa_loop ;Go back till we reach 384
+	ret
+; END:restart_game
+
+; BEGIN:display_score
+display_score:
+	ldw t1, SCORE(zero)
+	
+	;t2 = division counter
+	addi t2, zero, 0
+
+	division_10:
+	addi t1, t1, -10
+	addi t2, t2, 1
+	bge t1, zero, division_10
+
+	;T1 = Remainder of division
+	;T2 = Quotient
+	addi t1, t1, 10
+	addi t2, t2, -1
+
+	;Shifting for word alignment
+	slli t1, t1, 2
+	slli t2, t2, 2
+
+	;Fetching corresponding values in font_data
+	ldw t1, font_data(t1)
+	ldw t2, font_data(t2)
+	ldw t3, font_data(zero)
+
+	;Storing value in Segment registers
+	stw t3, SEVEN_SEGS(zero)
+	stw t3, SEVEN_SEGS + 4(zero)
+	stw t2, SEVEN_SEGS + 8(zero)
+	stw t1, SEVEN_SEGS + 12 (zero)
+	ret
+; END:display_score
+
+font_data:
+.word 0xFC ; 0
+.word 0x60 ; 1
+.word 0xDA ; 2
+.word 0xF2 ; 3
+.word 0x66 ; 4
+.word 0xB6 ; 5
+.word 0xBE ; 6
+.word 0xE0 ; 7
+.word 0xFE ; 8
+.word 0xF6 ; 9

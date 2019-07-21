@@ -1,0 +1,16 @@
+Fitter Status : Successful - Fri May 17 19:08:58 2019
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : GECKO
+Top-level Entity Name : GECKO
+Family : Cyclone IV E
+Device : EP4CE30F23C8
+Timing Models : Final
+Total logic elements : 9,026 / 28,848 ( 31 % )
+    Total combinational functions : 5,338 / 28,848 ( 19 % )
+    Dedicated logic registers : 8,365 / 28,848 ( 29 % )
+Total registers : 8365
+Total pins : 100 / 329 ( 30 % )
+Total virtual pins : 0
+Total memory bits : 988 / 608,256 ( < 1 % )
+Embedded Multiplier 9-bit elements : 0 / 132 ( 0 % )
+Total PLLs : 1 / 4 ( 25 % )

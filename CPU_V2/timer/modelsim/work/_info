@@ -1,0 +1,93 @@
+m255
+K4
+z0
+13
+cModel Technology
+Etimer
+Z0 w1553279263
+Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z4 dC:/Users/FOCUS/Desktop/ArcSoc/ArcSoc/timer/modelsim
+Z5 8C:/Users/FOCUS/Desktop/ArcSoc/ArcSoc/timer/vhdl/timer.vhd
+Z6 FC:/Users/FOCUS/Desktop/ArcSoc/ArcSoc/timer/vhdl/timer.vhd
+l0
+L5
+VC6N4HC_U8:i1MMJBL`Lh`0
+!s100 S940ASUddNF;Y<O5FiVln0
+Z7 OV;C;10.5b;63
+32
+Z8 !s110 1554911436
+!i10b 1
+Z9 !s108 1554911436.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-cover|s|-stats=none|C:/Users/FOCUS/Desktop/ArcSoc/ArcSoc/timer/vhdl/timer.vhd|
+Z11 !s107 C:/Users/FOCUS/Desktop/ArcSoc/ArcSoc/timer/vhdl/timer.vhd|
+!i113 1
+Z12 !s102 -cover s
+Z13 o-work work -2002 -explicit -cover s
+Z14 tExplicit 1 CvgOpt 0
+Asynth
+R1
+R2
+R3
+DEx4 work 5 timer 0 22 C6N4HC_U8:i1MMJBL`Lh`0
+l27
+L21
+VIfjN3?9YTncEW99WIQV^52
+!s100 jF?k3e[9iOZG]GSdfEXkh2
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+R14
+Etimer_tb
+R0
+Z15 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
+R1
+R2
+R3
+R4
+Z16 8C:/Users/FOCUS/Desktop/ArcSoc/ArcSoc/timer/testbench/timer_tb.vhd
+Z17 FC:/Users/FOCUS/Desktop/ArcSoc/ArcSoc/timer/testbench/timer_tb.vhd
+l0
+L7
+VjW[48_W3G0E8PR`f_gdmX2
+!s100 FDa[l?z0FX9ZJEbMO2EVZ3
+R7
+32
+Z18 !s110 1554911437
+!i10b 1
+Z19 !s108 1554911437.000000
+Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-cover|s|-stats=none|C:/Users/FOCUS/Desktop/ArcSoc/ArcSoc/timer/testbench/timer_tb.vhd|
+Z21 !s107 C:/Users/FOCUS/Desktop/ArcSoc/ArcSoc/timer/testbench/timer_tb.vhd|
+!i113 1
+R12
+R13
+R14
+Atestbench
+R15
+R1
+R2
+R3
+Z22 DEx4 work 8 timer_tb 0 22 jW[48_W3G0E8PR`f_gdmX2
+l96
+L10
+Z23 VA0V=T<g3jHk=>BTdXVR@^2
+Z24 !s100 B?RIWSY>f81@oQ>l`m0XR1
+R7
+32
+R18
+!i10b 1
+R19
+R20
+R21
+!i113 1
+R12
+R13
+R14

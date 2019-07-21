@@ -1,0 +1,55 @@
+.equ HEAD_X, 0x1000 ; snake head's position on x-axis
+.equ HEAD_Y, 0x1004 ; snake head's position on y-axis
+.equ TAIL_X, 0x1008 ; snake tail's position on x-axis
+.equ TAIL_Y, 0x100C ; snake tail's position on y-axis
+.equ SCORE, 0x1010 ; score address
+.equ GSA, 0x1014 ; game state array
+.equ LEDS, 0x2000 ; LED addresses
+.equ SEVEN_SEGS, 0x1198 ; 7-segment display addresses
+.equ RANDOM_NUM, 0x2010 ; Random number generator address
+.equ BUTTONS, 0x2030 ; Button addresses
+
+; BEGIN:display_score
+display_score:
+	ldw t1, SCORE(zero)
+	
+	;t2 = division counter
+	addi t2, zero, 0
+
+	division_10:
+	addi t1, 10, -10
+	addi t2, t2, 1
+	bge t1, zero, division_10
+
+	;T1 = Remainder of division
+	;T2 = Quotient
+	addi t1, t1, 10
+	addi t2, t2, 1
+
+	;Shifting for word alignment
+	slli t1, t1, 2
+	slli t2, t2, 2
+
+	;Fetching corresponding values in font_data
+	ldw t1, font_data(t1)
+	ldw t2, font_data(t2)
+
+	;Storing value in Segment registers
+	stw zero, SEVEN_SEGS(0)
+	stw zero, SEVEN_SEGS(4)
+	stw t2, SEVEN_SEGS(8)
+	stw t1, SEVEN_SEGS(12)
+	ret
+; END:display_score
+
+font_data:
+.word 0xFC ; 0
+.word 0x60 ; 1
+.word 0xDA ; 2
+.word 0xF2 ; 3
+.word 0x66 ; 4
+.word 0xB6 ; 5
+.word 0xBE ; 6
+.word 0xE0 ; 7
+.word 0xFE ; 8
+.word 0xF6 ; 9

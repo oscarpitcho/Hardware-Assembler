@@ -1,0 +1,201 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2016 Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+*/
+(header "graphic" (version "1.4"))
+(pin
+	(input)
+	(rect -80 496 88 512)
+	(text "INPUT" (rect 133 0 174 11)(font "Arial" (font_size 6)))
+	(text "clk" (rect 5 0 30 14)(font "Arial" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 168 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
+	)
+	(text "VCC" (rect 136 7 160 18)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect -152 496 -104 512))
+)
+(pin
+	(input)
+	(rect -88 544 80 560)
+	(text "INPUT" (rect 133 0 174 11)(font "Arial" (font_size 6)))
+	(text "reset_n" (rect 5 0 63 14)(font "Arial" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 168 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
+	)
+	(text "VCC" (rect 136 7 160 18)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect -168 528 -120 544))
+)
+(pin
+	(input)
+	(rect -112 560 88 576)
+	(text "INPUT" (rect 165 0 206 11)(font "Arial" (font_size 6)))
+	(text "in_buttons[0]" (rect 5 0 113 14)(font "Arial" ))
+	(pt 200 8)
+	(drawing
+		(line (pt 124 12)(pt 149 12))
+		(line (pt 124 4)(pt 149 4))
+		(line (pt 153 8)(pt 200 8))
+		(line (pt 124 12)(pt 124 4))
+		(line (pt 149 4)(pt 153 8))
+		(line (pt 149 12)(pt 153 8))
+	)
+	(text "VCC" (rect 168 7 192 18)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect -216 552 -168 568))
+)
+(pin
+	(input)
+	(rect -112 576 88 592)
+	(text "INPUT" (rect 165 0 206 11)(font "Arial" (font_size 6)))
+	(text "in_buttons[1]" (rect 5 0 113 14)(font "Arial" ))
+	(pt 200 8)
+	(drawing
+		(line (pt 124 12)(pt 149 12))
+		(line (pt 124 4)(pt 149 4))
+		(line (pt 153 8)(pt 200 8))
+		(line (pt 124 12)(pt 124 4))
+		(line (pt 149 4)(pt 153 8))
+		(line (pt 149 12)(pt 153 8))
+	)
+	(text "VCC" (rect 168 7 192 18)(font "Arial" (font_size 6)))
+	(annotation_block (location)(rect -152 592 -104 608))
+)
+(pin
+	(output)
+	(rect 744 496 963 512)
+	(text "OUTPUT" (rect 1 0 50 11)(font "Arial" (font_size 6)))
+	(text "out_LEDs[95..0]" (rect 90 0 213 14)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+	(annotation_block (location)(rect 963 512 1043 544))
+)
+(symbol
+	(rect 504 472 688 584)
+	(text "pipeline_lab" (rect 5 0 104 14)(font "Arial" ))
+	(text "inst" (rect 8 96 41 110)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "clk" (rect 0 0 24 14)(font "Arial" ))
+		(text "clk" (rect 21 27 45 41)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "reset_n" (rect 0 0 57 14)(font "Arial" ))
+		(text "reset_n" (rect 21 43 78 57)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "Button0" (rect 0 0 57 14)(font "Arial" ))
+		(text "Button0" (rect 21 59 78 73)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "Button1" (rect 0 0 57 14)(font "Arial" ))
+		(text "Button1" (rect 21 75 78 89)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80))
+	)
+	(port
+		(pt 184 32)
+		(output)
+		(text "LEDS[95..0]" (rect 0 0 90 14)(font "Arial" ))
+		(text "LEDS[95..0]" (rect 117 27 207 41)(font "Arial" ))
+		(line (pt 184 32)(pt 168 32)(line_width 3))
+	)
+	(drawing
+		(rectangle (rect 16 16 168 96))
+	)
+)
+(connector
+	(pt 440 520)
+	(pt 504 520)
+)
+(connector
+	(pt 488 584)
+	(pt 488 552)
+)
+(connector
+	(pt 504 552)
+	(pt 488 552)
+)
+(connector
+	(pt 464 568)
+	(pt 464 536)
+)
+(connector
+	(pt 504 536)
+	(pt 464 536)
+)
+(connector
+	(pt 688 504)
+	(pt 744 504)
+	(bus)
+)
+(connector
+	(text "IN_BUTTONS[0]" (rect 370 560 477 574)(font "Arial" ))
+	(pt 88 568)
+	(pt 464 568)
+)
+(connector
+	(text "IN_BUTTONS[1]" (rect 370 576 477 590)(font "Arial" ))
+	(pt 88 584)
+	(pt 488 584)
+)
+(connector
+	(text "clk" (rect 154 496 178 510)(font "Arial" ))
+	(pt 88 504)
+	(pt 504 504)
+)
+(connector
+	(pt 440 520)
+	(pt 440 552)
+)
+(connector
+	(text "reset_n" (rect 146 544 203 558)(font "Arial" ))
+	(pt 80 552)
+	(pt 440 552)
+)
+(text "clk" (rect 154 496 178 510)(font "Arial" ))
+(text "reset_n" (rect 154 544 211 558)(font "Arial" ))
